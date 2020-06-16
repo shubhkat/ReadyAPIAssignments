@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="d3396772-a371-4def-9b2d-9c47da41f18e" created="3.2.7" activeEnvironment="Default environment" name="ThirdAndFourthAssignment" resourceRoot="" updated="3.2.7 2020-05-27T19:48:04Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="0fea2475-f690-4d2a-9762-ece08e33f5ad" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://rahulshettyacademy.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>https://rahulshettyacademy.com</con:endpoint></con:endpoints><con:resource name="Json" path="/maps/api/place/add/json" id="9f2e6a06-e9ee-4c93-9bed-35f96afd1631"><con:settings/><con:parameters/><con:method name="Json" id="ff613567-25e2-4cc4-a404-dbd8394e7a2a" method="POST"><con:settings/><con:parameters><con:parameter required="true"><con:name>key</con:name><con:value/><con:style>QUERY</con:style><con:default/></con:parameter></con:parameters><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:json="https://rahulshettyacademy.com/maps/api/place/add/json">json:Response</con:element></con:representation><con:request name="Request 1" id="777cdf1d-05a9-4d31-bed3-4bd08409ccaf" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://rahulshettyacademy.com</con:endpoint><con:request>{
+  "location": {
+    "lat": -38.383494,
+    "lng": 33.427362
+  },
+  "accuracy": 50,
+  "name": "Frontline house",
+  "phone_number": "(+91) 983 893 3937",
+  "address": "29, side layout, cohen 09",
+  "types": [
+    "shoe park",
+    "shop"
+  ],
+  "website": "http://google.com",
+  "language": "French-IN"
+}</con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><con:entry key="key" value="qaclick123"/></con:parameters><con:parameterOrder><con:entry>key</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="917b5b0f-6a9e-4ae4-a299-d79fc6863672" name="TestSuite"><con:settings/><con:savedRecentRuns>1</con:savedRecentRuns><con:runType>SEQUENTIAL</con:runType><con:testCase id="01823b5a-e82f-444d-b7e5-eeced46990ed" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase" searchProperties="true" timeout="0"><con:settings/><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="properties" name="Property" id="d97ec5e9-4b42-46ed-9cbd-ac8dc1a7d020"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>D:/TCS/RBC/Projects/ThirdAndFourthAssignment/Property.txt</con:source><con:target>D:/TCS/RBC/Projects/ThirdAndFourthAssignment/Properties.properties</con:target><con:properties><con:property><con:name>key</con:name><con:value>qaclick123</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Headers" id="610a450c-8029-4e53-8b48-73ef431726ae"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>D:/TCS/RBC/Projects/ThirdAndFourthAssignment/Headers.txt</con:source><con:target>D:/TCS/RBC/Projects/ThirdAndFourthAssignment/Headers.properties</con:target><con:properties><con:property><con:name>Cache-Control</con:name><con:value>no-cache</con:value></con:property><con:property><con:name>Content-Type</con:name><con:value>application/json</con:value></con:property><con:property><con:name>Accept</con:name><con:value>*/*</con:value></con:property><con:property><con:name>Accept-Encoding</con:name><con:value>gzip, deflate, br</con:value></con:property><con:property><con:name>Connection</con:name><con:value>keep-alive</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="InitStep" id="6771a11f-86b8-4bbb-908b-029bb16001a9"><con:settings/><con:config><script>import com.eviware.soapui.support.types.StringToStringMap
+
+def headers = new StringToStringMap()
+def testSteps = context.testCase.getTestStepList()
+def properties
+def key = new StringToStringMap()
+def headerNamesList = []
+def headerValuesList = []
+
+testSteps.each{
+	if(it.name == "REST Request"){
+		
+		log.info(true)
+		properties = context.testCase.getTestStepByName("Property").getPropertyValue("key")
+		log.info(properties)
+		it.setPropertyValue("key", properties)
+
+		headerNamesList = context.testCase.getTestStepByName("Headers").getPropertyNames()
+		log.info(headerNamesList.toString())
+		for(i=0; i&lt; headerNamesList.size(); i++){
+			headerValuesList.add(context.testCase.getTestStepByName("Headers").getPropertyValue(headerNamesList[i]))
+		}
+		log.info(headerValuesList.toString())
+		for(i=0; i&lt; headerNamesList.size(); i++){
+			headers.put(headerNamesList[i], headerValuesList[i])
+		}
+		log.info(headers)
+		it.getHttpRequest().setRequestHeaders(headers)
+	}
+}
+</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Request" id="76660f3f-ca82-4672-9e07-215d922e4613"><con:settings/><con:config service="https://rahulshettyacademy.com" methodName="Json" resourcePath="/maps/api/place/add/json" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Request" id="074bfb62-0cac-4390-803b-b5122ca7eb6f" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="RecordRequestRepresentations">false</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Connection" value="keep-alive"/>
+  <con:entry key="Accept-Encoding" value="gzip, deflate, br"/>
+  <con:entry key="Cache-Control" value="no-cache"/>
+  <con:entry key="Accept" value="*/*"/>
+  <con:entry key="Content-Type" value="application/json"/>
+</xml-fragment>]]></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://rahulshettyacademy.com</con:endpoint><con:request>{
+  "location": {
+    "lat": -38.383494,
+    "lng": 33.427362
+  },
+  "accuracy": 50,
+  "name": "Frontline house",
+  "phone_number": "(+91) 983 893 3937",
+  "address": "29, side layout, cohen 09",
+  "types": [
+    "shoe park",
+    "shop"
+  ],
+  "website": "http://google.com",
+  "language": "French-IN"
+}</con:request><con:originalUri>https://rahulshettyacademy.com/maps/api/place/add/json</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="320060a2-0a39-4154-a3b8-2325b30bdee5" name="Valid HTTP Status Codes"><con:settings/><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters><con:entry key="key" value="qaclick123"/></con:parameters><con:parameterOrder><con:entry>key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="datasource" name="InputData" id="854d2d0b-09a5-4607-aad4-29d93b735586"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Excel"><con:configuration><file>D:/TCS/RBC/Projects/ThirdAndFourthAssignment/Headers.xlsx</file><worksheet>Headers</worksheet><cell>A2</cell><ignoreEmpty>true</ignoreEmpty><evaluateFormulas>false</evaluateFormulas></con:configuration></con:dataSource><con:shared>true</con:shared><con:restartShared>true</con:restartShared><con:property>keys</con:property><con:property>values</con:property><con:startRow/><con:endRow/><con:recordsPerIteration>1</con:recordsPerIteration><con:completeLastOperation>true</con:completeLastOperation><con:failOnEmpty>false</con:failOnEmpty><con:gotoLoopOnEmpty>false</con:gotoLoopOnEmpty><con:trimValues>false</con:trimValues><con:entitizeValues>false</con:entitizeValues><con:restartOnRun>true</con:restartOnRun><con:expandProperties>false</con:expandProperties></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="3d40a9f4-aa30-42c6-8982-8bf79b9f7681" disabled="true"><con:settings/><con:config><dataSourceStep>InputData</dataSourceStep><targetStep>InputData</targetStep><discardResults>true</discardResults></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>d97ec5e9-4b42-46ed-9cbd-ac8dc1a7d020</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>6771a11f-86b8-4bbb-908b-029bb16001a9</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>854d2d0b-09a5-4607-aad4-29d93b735586</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>76660f3f-ca82-4672-9e07-215d922e4613</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>3d40a9f4-aa30-42c6-8982-8bf79b9f7681</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>610a450c-8029-4e53-8b48-73ef431726ae</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:savedRecentRuns>1</con:savedRecentRuns><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:jmsConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:reportTemplates/><con:xmlTemplates/><con:xmlTemplates/><con:parameters/><con:parameters/></con:reporting><con:reporting/><con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest"><con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script></con:eventHandlers><con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep"><con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script></con:eventHandlers><con:authRepository/><con:tags/></con:soapui-project>

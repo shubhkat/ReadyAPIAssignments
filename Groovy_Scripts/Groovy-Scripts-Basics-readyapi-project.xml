@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="87d96a37-44aa-4a3e-89ba-996c1419f2ca" created="3.2.7" activeEnvironment="Default environment" name="Groovy Scripts Basics" updated="3.2.7 2020-05-27T19:48:04Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="1587075f-d10b-4d5a-81d4-f08bfe83337f" wadlVersion="http://wadl.dev.java.net/2009/02" name="" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints/><con:resource name="GroovyDemo" path="/GroovyDemo" id="326e2a3d-f296-4821-a948-3f9594ea3b73"><con:settings/><con:parameters/><con:method name="GroovyDemo" id="09512ec2-d353-4a52-99aa-8d3091ae315b" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" id="b8415013-34b0-4b71-bf9d-5343a11c838c" mediaType="application/json"><con:settings/><con:request/><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="7cb0aa92-b943-4923-9930-cb6b8e30b290" name="GroovySuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="263beb01-b803-4ee9-83b8-a9eabd5d8ae2" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="HelloWorld" searchProperties="true" timeout="0"><con:settings/><con:testStep type="groovy" name="HelloGroovy" id="3c41824c-9250-40a6-9271-8a71314c16e1"><con:settings/><con:config><script>log.info "Groovy Hello World Program"
+log.info "=============================="
+
+//println can not print anything in a new line
+log.info "println will not print anything in the log output"
+println("Hello Groovy")
+log.info "=============================="
+
+name = "Groovy"
+log.info name
+log.info "=============================="
+
+def eman = "yvoorG"
+log.info '${eman}'
+log.info "${eman}"
+log.info "$eman"
+//Groovy is dynamically typed language
+eman = 20
+log.info "${eman}"
+log.info eman
+log.info "=============================="
+
+x = 10
+X = 20
+log.info (x)
+log.info (X)
+log.info "=============================="
+
+def (a,b,c) = [30,40,50]
+log.info (a)
+log.info (b)
+log.info (c)
+log.info "=============================="
+
+def (String l,int m,double n) = [30,40,50]   //double is a primitive data type
+log.info (l)
+log.info (m)
+log.info (n)
+log.info "=============================="
+
+def (String p,int q,Double r) = [30,40]  //Double is a class object
+log.info (p)
+log.info (q)
+log.info (r)
+log.info "=============================="
+
+//byte
+byte B = 10
+log.info(B)
+log.info(Byte.MIN_VALUE)  //Byte Class
+log.info(Byte.MAX_VALUE)
+log.info "=============================="
+
+//short
+short S =100
+log.info(S)
+log.info(Short.MIN_VALUE)  //Short Class
+log.info(Short.MAX_VALUE)
+log.info "=============================="
+
+//int
+int I =1000
+log.info(I)
+log.info(Integer.MIN_VALUE)  //Integer Class
+log.info(Integer.MAX_VALUE)
+log.info "=============================="
+
+//long
+long L =100000
+log.info(L)
+log.info(Long.MIN_VALUE)  //Long Class
+log.info(Long.MAX_VALUE)
+log.info "=============================="
+
+//float
+float F =100.002F
+log.info(F)
+log.info(Float.MIN_VALUE)  //Float Class
+log.info(Float.MAX_VALUE)
+log.info "=============================="
+
+//double
+double D =1000.0002
+log.info(D)
+log.info(Double.MIN_VALUE)  //Double Class
+log.info(Double.MAX_VALUE)
+log.info "=============================="
+
+//char
+char C = '*'
+log.info(C)
+log.info "=============================="
+
+//Boolean
+boolean flag =true
+log.info(flag)
+log.info "=============================="
+
+//String
+String str ="This is string"
+log.info(str)
+log.info "=============================="
+
+def random = 10
+log.info(random.getClass().getName())
+log.info "=============================="
+
+//integer type casted to byte
+def cast = (byte)10
+log.info(cast.getClass().getName())
+log.info "=============================="
+
+/*
+  * Output for above groovy script
+  * 
+Thu Jun 11 17:28:18 IST 2020: INFO: Groovy Hello World Program
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: println will not print anything in the log output
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: Groovy
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: ${eman}
+Thu Jun 11 17:28:18 IST 2020: INFO: yvoorG
+Thu Jun 11 17:28:18 IST 2020: INFO: yvoorG
+Thu Jun 11 17:28:18 IST 2020: INFO: 20
+Thu Jun 11 17:28:18 IST 2020: INFO: 20
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 10
+Thu Jun 11 17:28:18 IST 2020: INFO: 20
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 30
+Thu Jun 11 17:28:18 IST 2020: INFO: 40
+Thu Jun 11 17:28:18 IST 2020: INFO: 50
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 30
+Thu Jun 11 17:28:18 IST 2020: INFO: 40
+Thu Jun 11 17:28:18 IST 2020: INFO: 50.0
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 30
+Thu Jun 11 17:28:18 IST 2020: INFO: 40
+Thu Jun 11 17:28:18 IST 2020: INFO: null
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 10
+Thu Jun 11 17:28:18 IST 2020: INFO: -128
+Thu Jun 11 17:28:18 IST 2020: INFO: 127
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 100
+Thu Jun 11 17:28:18 IST 2020: INFO: -32768
+Thu Jun 11 17:28:18 IST 2020: INFO: 32767
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 1000
+Thu Jun 11 17:28:18 IST 2020: INFO: -2147483648
+Thu Jun 11 17:28:18 IST 2020: INFO: 2147483647
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 100000
+Thu Jun 11 17:28:18 IST 2020: INFO: -9223372036854775808
+Thu Jun 11 17:28:18 IST 2020: INFO: 9223372036854775807
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 100.002
+Thu Jun 11 17:28:18 IST 2020: INFO: 1.4E-45
+Thu Jun 11 17:28:18 IST 2020: INFO: 3.4028235E38
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: 1000.0002
+Thu Jun 11 17:28:18 IST 2020: INFO: 4.9E-324
+Thu Jun 11 17:28:18 IST 2020: INFO: 1.7976931348623157E308
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: *
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: true
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: This is string
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: java.lang.Integer
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+Thu Jun 11 17:28:18 IST 2020: INFO: java.lang.Byte
+Thu Jun 11 17:28:18 IST 2020: INFO: ==============================
+
+ * 
+ */
+
+</script></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="2bbe474b-acc7-4f11-87f8-998d931c277e" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Operators" searchProperties="true" timeout="0"><con:settings/><con:testStep type="groovy" name="Calculator" id="ebdc6089-29db-485f-ac85-863a2b514d41"><con:settings/><con:config><script><![CDATA[
+	// Initializing 3 variables 
+    def x = 5; 
+    def y = 10; 
+    def z = 8; 
+	
+	//Performing addition of 2 operands 
+    log.info(x+y); 
+
+    //Subtracts second operand from the first 
+    log.info(x-y); 
+
+    //Multiplication of both operands 
+    log.info(x*y);
+
+    //Division of numerator by denominator 
+    log.info(z/x); 
+
+    //Modulus Operator and remainder of after an integer/float division 
+    log.info(z%x); 
+
+    //Incremental operator 
+    log.info(x++); 
+
+    //Decrementing operator 
+    log.info(x--);
+
+     //raised to the power
+    log.info(x**y);
+
+// Assert Statement
+//Normal Arithmetic operations
+assert  1  + 2 == 3
+assert  4  - 3 == 1
+assert  3  * 5 == 15
+assert  3  / 2 == 1.5
+assert 10  % 3 == 1
+assert  2 ** 3 == 8   //if not equals assertion failed error occurss displaying us the required result
+assert 9.intdiv(5) == 1
+assert 2.2.plus(1.1) == 3.3
+
+//Unary Operators
+assert +3 == 3
+assert -4 == 0 - 4
+assert -(-1) == 1
+
+//The postfix increment will increment a after the expression has been evaluated and assigned into b
+def a = 2
+def b = a++ * 3             
+assert a == 3 && b == 6
+
+//The postfix decrement will decrement c after the expression has been evaluated and assigned into d
+def c = 3
+def d = c-- * 2             
+assert c == 2 && d == 6
+
+//The prefix increment will increment e before the expression is evaluated and assigned into f
+def e = 1
+def f = ++e + 3             
+assert e == 2 && f == 5
+
+//The prefix decrement will decrement g before the expression is evaluated and assigned into h
+def g = 4
+def h = --g + 1             
+assert g == 3 && h == 4
+
+//Increament
+log.info("======================");
+i = 10;
+log.info(i++)  //post increment
+log.info(i)
+log.info(++i)  //pre increment
+log.info(i)
+
+//Decrement
+log.info("======================");
+j = 10;
+log.info(j--)  //post decrement
+log.info(j)
+log.info(--j)  //pre decrement
+log.info(j)
+
+//Assignment arithmetic operators
+def A = 4
+A += 3  // A = A + 3
+assert A == 7
+
+def B = 5
+B -= 3
+assert B == 2
+
+def C = 5
+C *= 3
+assert C == 15
+
+def D = 10
+D/= 2
+assert D == 5
+
+def E = 10
+E %= 3
+assert E == 1
+
+def F = 3
+F **= 2
+assert F == 9
+
+//Relational operators
+assert 1 + 2 == 3
+assert 3 != 4
+assert -2 < 3
+assert 2 <= 2
+assert 3 <= 4
+assert 5 > 1
+assert 5 >= -2
+
+//Logical operators
+assert !false	//"not" false is true
+assert true && true	 //true "and" true is true
+assert true || false  //true "or" false is true  
+//Precedence
+//The logical "not" has a higher priority than the logical "and".
+assert (!false && false) == false   
+//Here, the assertion is true (as the expression in parentheses is false), because "not" has a higher precedence than "and",
+//so it only applies to the first "false" term; otherwise, it would have applied to the result of the "and", turned it into true, and 
+//the assertion would have failed
+
+//The logical "and" has a higher priority than the logical "or".
+assert true || true && false        
+//Here, the assertion is true, because "and" has a higher precedence than "or", therefore the "or" is executed last and returns true,
+//having one true argument; otherwise, the "and" would have executed last and returned false, having one false argument,
+//and the assertion would have failed
+
+//Bitwise operators
+//Bitwise operators can be applied on a byte or an int and return an int:
+log.info("======================");
+int a1 = 0b00101010
+log.info(a1);
+log.info Integer.toBinaryString(a1)
+assert a1 == 42		//101010
+int b1 = 0b00001000
+log.info(b1);
+log.info Integer.toBinaryString(b1)	//1000
+assert b1 == 8
+log.info(a1 & b1)	//     101010     -   42
+							//&  001000     -    8
+							//	  001000     -    8
+log.info(Integer.parseInt("10000", 2))      //  Converts decimal to binary
+
+assert (a1 & a1) == a1     //bitwise and                
+assert (a1 & b1) == b1     //bitwise and returns common bits               
+assert (a1 | a1) == a1      //bitwise or               
+assert (a1 | b1) == a1      //bitwise or returns all '1' bits              
+
+int mask = 0b11111111    						//setting a mask to check only the last 8 bits                   
+assert ((a1 ^ a1) & mask) == 0b00000000   //bitwise exclusive or on self returns 0
+assert ((a1 ^ b1) & mask) == 0b00100010   //bitwise exclusive or
+assert ((~a1) & mask)    == 0b11010101   //bitwise negation
+
+//Conditional Operators
+assert (!true)    == false          //the negation of true is false            
+assert (!'foo')   == false          //'foo' is a non empty string, evaluating to true, so negation returns false
+assert (!'')      == true              //'' is an empty string, evaluating to false, so negation returns true
+
+//Ternary operator
+if (1<0) {
+    log.info(result = "1 is less than zero")
+}
+else {
+    log.info(result = "1 is not less than zero")
+}
+log.info(result = (1>0) ? "1 is greater than zero" : "1 is not greater than zero")
+
+/*
+*
+*Output for Calculator Program
+*
+*
+Fri Jun 12 18:08:45 IST 2020: INFO: 15
+Fri Jun 12 18:08:45 IST 2020: INFO: -5
+Fri Jun 12 18:08:45 IST 2020: INFO: 50
+Fri Jun 12 18:08:45 IST 2020: INFO: 1.6
+Fri Jun 12 18:08:45 IST 2020: INFO: 3
+Fri Jun 12 18:08:45 IST 2020: INFO: 5
+Fri Jun 12 18:08:45 IST 2020: INFO: 6
+Fri Jun 12 18:08:45 IST 2020: INFO: 9765625
+Fri Jun 12 18:08:45 IST 2020: INFO: ======================
+Fri Jun 12 18:08:45 IST 2020: INFO: 10
+Fri Jun 12 18:08:45 IST 2020: INFO: 11
+Fri Jun 12 18:08:45 IST 2020: INFO: 12
+Fri Jun 12 18:08:45 IST 2020: INFO: 12
+Fri Jun 12 18:08:45 IST 2020: INFO: ======================
+Fri Jun 12 18:08:45 IST 2020: INFO: 10
+Fri Jun 12 18:08:45 IST 2020: INFO: 9
+Fri Jun 12 18:08:45 IST 2020: INFO: 8
+Fri Jun 12 18:08:45 IST 2020: INFO: 8
+Fri Jun 12 18:08:45 IST 2020: INFO: ======================
+Fri Jun 12 18:08:45 IST 2020: INFO: 42
+Fri Jun 12 18:08:45 IST 2020: INFO: 101010
+Fri Jun 12 18:08:45 IST 2020: INFO: 8
+Fri Jun 12 18:08:45 IST 2020: INFO: 1000
+Fri Jun 12 18:08:45 IST 2020: INFO: 8
+Fri Jun 12 18:08:45 IST 2020: INFO: 16
+Fri Jun 12 18:08:45 IST 2020: INFO: 1 is not less than zero
+Fri Jun 12 18:08:45 IST 2020: INFO: 1 is greater than zero
+*
+ */
+
+
+]]></script></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="c04c060c-3ab8-43d2-8f79-778a6999fc4e" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Statements" searchProperties="true" timeout="0"><con:settings/><con:testStep type="groovy" name="Conditional Statements" id="ab0e19bd-9666-4fdc-b99d-d65610572a56"><con:settings/><con:config><script>//to check if number is positive or not
+//Using nested if-else
+def num = 0
+if(num>0){
+	log.info("Number is positive")
+}
+else if(num==0){
+	log.info("Number is zero")
+}
+else{
+	log.info("Number is negative")
+}
+
+log.info( "==========================")
+
+def x = 10
+def result = ""
+//Using switch
+switch(x){
+	case 0:
+		log.info(result = "x is zero")
+		break
+	case {x>0}:
+		log.info(result = "x is positive")
+		break
+	case {x&lt;0}:
+		log.info(result = "x is negative")
+		break
+	default:
+		log.info(result = "Invalid number")
+		break
+}
+
+
+/*
+ * 
+ *Output for Conditional Statements Program 
+
+ Fri Jun 12 18:10:08 IST 2020: INFO: Number is zero
+Fri Jun 12 18:10:08 IST 2020: INFO: ==========================
+Fri Jun 12 18:10:08 IST 2020: INFO: x is positive
+ 
+ 
+ */
+ */
+</script></con:config></con:testStep><con:testStep type="groovy" name="Loops" id="e63eb026-7143-454a-980f-d02d03540a49"><con:settings/><con:config><script>log.info("=============================")
+//for loop
+for(i=1; i&lt;=10; i++){
+	log.info(i)
+}
+log.info("=============================")
+
+//for in loop
+for(a in 1..10){
+log.info(a)
+}
+log.info("=============================")
+
+//upto keyword
+1.upto(10){
+	log.info("$it")
+}
+log.info("=============================")
+
+//times keyword
+10.times{
+	log.info("$it")
+}
+log.info("=============================")
+
+//step keyword
+1.step(10,2){
+	log.info("$it")
+}
+log.info("=============================")
+
+// iterate over a range
+def x = 0
+for ( i in 0..9 ) {
+    x += i
+}
+assert x == 45
+
+// iterate over a list
+x = 0
+for ( i in [0, 1, 2, 3, 4] ) {
+    x += i
+}
+assert x == 10
+
+// iterate over an array
+def array = (0..4).toArray()
+x = 0
+for ( i in array ) {
+    x += i
+}
+assert x == 10
+
+// iterate over a map
+def map = ['abc':1, 'def':2, 'xyz':3]
+x = 0
+for ( e in map ) {
+    log.info(e.key)
+    log.info(e.value)
+    x += e.value
+}
+assert x == 6
+
+// iterate over values in a map
+x = 0
+for ( v in map.values() ) {
+    x += v
+}
+assert x == 6
+
+// iterate over the characters in a string
+def text = "abc"
+def list = []
+for (c in text) {
+    list.add(c)
+}
+assert list == ["a", "b", "c"]
+def list1 = []
+for (char ch : text) {
+	list1.add(ch)
+}
+assert list == ["a", "b", "c"]
+log.info("=============================")
+
+//while loop
+byte i = 1
+while(i&lt;=10){
+	log.info(i)
+	i++
+}
+log.info("=============================")
+
+/*
+ * 
+ * Output for Loops program
+
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: 2
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: 4
+Fri Jun 12 18:24:38 IST 2020: INFO: 5
+Fri Jun 12 18:24:38 IST 2020: INFO: 6
+Fri Jun 12 18:24:38 IST 2020: INFO: 7
+Fri Jun 12 18:24:38 IST 2020: INFO: 8
+Fri Jun 12 18:24:38 IST 2020: INFO: 9
+Fri Jun 12 18:24:38 IST 2020: INFO: 10
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: 2
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: 4
+Fri Jun 12 18:24:38 IST 2020: INFO: 5
+Fri Jun 12 18:24:38 IST 2020: INFO: 6
+Fri Jun 12 18:24:38 IST 2020: INFO: 7
+Fri Jun 12 18:24:38 IST 2020: INFO: 8
+Fri Jun 12 18:24:38 IST 2020: INFO: 9
+Fri Jun 12 18:24:38 IST 2020: INFO: 10
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: 2
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: 4
+Fri Jun 12 18:24:38 IST 2020: INFO: 5
+Fri Jun 12 18:24:38 IST 2020: INFO: 6
+Fri Jun 12 18:24:38 IST 2020: INFO: 7
+Fri Jun 12 18:24:38 IST 2020: INFO: 8
+Fri Jun 12 18:24:38 IST 2020: INFO: 9
+Fri Jun 12 18:24:38 IST 2020: INFO: 10
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: 0
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: 2
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: 4
+Fri Jun 12 18:24:38 IST 2020: INFO: 5
+Fri Jun 12 18:24:38 IST 2020: INFO: 6
+Fri Jun 12 18:24:38 IST 2020: INFO: 7
+Fri Jun 12 18:24:38 IST 2020: INFO: 8
+Fri Jun 12 18:24:38 IST 2020: INFO: 9
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: 5
+Fri Jun 12 18:24:38 IST 2020: INFO: 7
+Fri Jun 12 18:24:38 IST 2020: INFO: 9
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: abc
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: def
+Fri Jun 12 18:24:38 IST 2020: INFO: 2
+Fri Jun 12 18:24:38 IST 2020: INFO: xyz
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+Fri Jun 12 18:24:38 IST 2020: INFO: 1
+Fri Jun 12 18:24:38 IST 2020: INFO: 2
+Fri Jun 12 18:24:38 IST 2020: INFO: 3
+Fri Jun 12 18:24:38 IST 2020: INFO: 4
+Fri Jun 12 18:24:38 IST 2020: INFO: 5
+Fri Jun 12 18:24:38 IST 2020: INFO: 6
+Fri Jun 12 18:24:38 IST 2020: INFO: 7
+Fri Jun 12 18:24:38 IST 2020: INFO: 8
+Fri Jun 12 18:24:38 IST 2020: INFO: 9
+Fri Jun 12 18:24:38 IST 2020: INFO: 10
+Fri Jun 12 18:24:38 IST 2020: INFO: =============================
+
+ * 
+ * 
+ * 
+ */
+
+
+
+</script></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:jmsConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest"><con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script></con:eventHandlers><con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep"><con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script></con:eventHandlers><con:authRepository/><con:tags/></con:soapui-project>
